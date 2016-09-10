@@ -34,11 +34,11 @@ class Console (Cmd):
                        in the default of fire)
         """
         args = line.split(" ")
-        if (args[0] is not None):
+        if len(args) > 0 and args[0] is not "":
             url = args[0]
-        if (args[1] is not None):
+        if len(args) > 1 and args[1] is not "":
             gen = args[1]
-        if (args[2] is not None):
+        if len(args) > 2 and args[2] is not "":
             p_type = args[2]
         
         self.my_controller.get_from_web(url, gen, p_type)
@@ -49,10 +49,14 @@ class Console (Cmd):
         :param name: this is the name of the pokemon whose instance you wish
                 to save
         """
+        if name is "":
+            print ("please enter a pokemon's name")
+            return
+
         name = name.title()
         self.my_controller.save_data(name)
 
-    def do_load(self):
+    def do_load(self, arg):
         """
         this function loads the saved instances of the pokemon class
         """
@@ -67,11 +71,15 @@ class Console (Cmd):
         :param name: this is the name of the pokemon whose information you wish
          to view
         """
+        if name is "":
+            print("please enter a pokemon's name")
+            return
+
         name = name.title()
         try:
             self.my_controller.get_stats(name)
         except KeyError:
-            print("Pokemon " + name + " doesn't exist in this generation")
+            print("Pokemon " + name + " doesn't exist in the current data")
 
     def do_max_weight(self, line):
         """

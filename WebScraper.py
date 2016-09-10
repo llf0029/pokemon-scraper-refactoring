@@ -35,9 +35,16 @@ class WebScraper:
             #     pokemon_list.append(pokemon_list)
         return pokemon_list
 
-    def info_grab(self, pokemon,):
+    def info_grab(self, pokemon):
+
+        # Clean the pokemon name for use in URL
+        for char in ['.', '\'', ',', '/', '\\']:
+            pokemon = pokemon.replace(char, '')
+        pokemon = pokemon.replace(' ', '-')
+
         r = requests.get(self.url + pokemon).text
         s = BeautifulSoup(r, "html.parser")
+
         desc = s.find('div',
                       attrs={'class': 'col desk-span-8 lap-span-6'}).text[:-1]
         table = s.find('div', attrs={'class': 'tabset-basics'})

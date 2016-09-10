@@ -14,9 +14,10 @@ class Controller:
     pokedex = {}
 
     def __init__(self):
-        self.my_console = Console.Console("(-o-)",
-                                          """"Welcome to the personal pokemon encyclopedia (or pokedex for short)
-        type help or '?' to see a list of commands""", self)
+        self.my_console = Console.Console(
+            "(-o-)",
+            """Welcome to the personal pokemon encyclopedia (or pokedex for short)
+Type help or '?' to see a list of commands""", self)
         self.my_file_handler = FileHandler.FileHandler()
         self.my_Calc = StatisticCalculator.StatisticCalculator()
 
@@ -35,33 +36,33 @@ class Controller:
             pokemon = self.pokedex[name]
             self.my_file_handler.save(pokemon)
             print("pokemon instance saved")
+        except KeyError:
+            print("pokemon " + name + " was not found in the current data")
         except SystemError:
             print("pokemon instance could not be saved")
 
     def get_from_save(self):
         p_list = self.my_file_handler.load_database()
         for species in p_list:
-            self.create_pokemon(species['name'], species)
+            self.pokedex[species.name] = species
+            print(species.name + " added")
 
     def create_pokemon(self, name, pokemon):
-        self.pokedex[name] = Pokemon.Pokemon(pokemon["number"],
-                                             pokemon["image"],
-                                             name,
-                                             pokemon["type"],
-                                             pokemon["desc"],
-                                             pokemon["height"],
-                                             pokemon["weight"],
-                                             datetime.now().ctime())
+        self.pokedex[name] = Pokemon.Pokemon(
+            pokemon["number"], pokemon["image"], name,
+            pokemon["type"], pokemon["desc"], pokemon["height"],
+            pokemon["weight"], datetime.now().ctime()
+        )
         print(name + " added")
 
     def get_stats(self, name):
-            print(name)
-            print("Nation Number: " + str(self.pokedex[name].get_index()))
-            print("Image Link: " + self.pokedex[name].get_image())
-            print("Type: " + self.pokedex[name].get_type())
-            print("Pokedex Entry: " + self.pokedex[name].get_desc())
-            print("Height: " + str(self.pokedex[name].get_height()) + "m")
-            print("Weight: " + str(self.pokedex[name].get_weight()) + "kg")
+        print(str(self.pokedex[name].name))
+        print("Nation Number: " + str(self.pokedex[name].get_index()))
+        print("Image Link: " + self.pokedex[name].get_image())
+        print("Type: " + self.pokedex[name].get_type())
+        print("Pokedex Entry: " + self.pokedex[name].get_desc())
+        print("Height: " + str(self.pokedex[name].get_height()) + "m")
+        print("Weight: " + str(self.pokedex[name].get_weight()) + "kg")
 
     def get_min_weight(self):
         lightest = self.my_Calc.get_min_weight(self.pokedex)
@@ -89,7 +90,7 @@ class Controller:
     def get_max_height(self):
         tallest = self.my_Calc.get_max_height(self.pokedex)
         height = self.pokedex[tallest].get_height()
-        print("the tallest pokemon you have got data on is " + "tallest" +
+        print("the tallest pokemon you have got data on is " + tallest +
               " at a whooping " + str(height) + "m")
 
     def get_avg_height(self):
