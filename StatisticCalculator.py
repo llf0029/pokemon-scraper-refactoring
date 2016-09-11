@@ -56,8 +56,5 @@ class StatisticCalculator:
     # Extracted from get_avg_height / get_avg_weight
     def calculate_avg(self, values):
         num_of_values = len(values)
-        sum_of_values = 0
-        for value in values:
-            sum_of_values += value
-        avg = sum_of_values / num_of_values
-        return avg
+        sum_of_values = sum(values)
+        return sum_of_values / num_of_values
