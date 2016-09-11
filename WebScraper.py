@@ -38,11 +38,12 @@ class WebScraper:
     def info_grab(self, pokemon):
 
         # Clean the pokemon name for use in URL
+        pokemon_url = pokemon
         for char in ['.', '\'', ',', '/', '\\']:
-            pokemon = pokemon.replace(char, '')
-        pokemon = pokemon.replace(' ', '-')
+            pokemon_url = pokemon_url.replace(char, '')
+        pokemon_url = pokemon_url.replace(' ', '-')
 
-        r = requests.get(self.url + pokemon).text
+        r = requests.get(self.url + pokemon_url).text
         s = BeautifulSoup(r, "html.parser")
 
         desc = s.find('div',
