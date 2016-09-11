@@ -12,10 +12,7 @@ class StatisticCalculator:
         return self.calculate_max(self.get_pokemon_weights(pokedex))
 
     def get_avg_weight(self, pokedex):
-        values = []
-        for key in pokedex:
-            values.append(pokedex[key].get_weight())
-        return self.calculate_avg(values)
+        return self.calculate_avg(self.get_pokemon_weights(pokedex))
 
     def get_min_height(self, pokedex):
         return self.calculate_min(self.get_pokemon_heights(pokedex))
@@ -24,10 +21,7 @@ class StatisticCalculator:
         return self.calculate_max(self.get_pokemon_heights(pokedex))
         
     def get_avg_height(self, pokedex):
-        values = []
-        for key in pokedex:
-            values.append(pokedex[key].get_height())
-        return self.calculate_avg(values)
+        return self.calculate_avg(self.get_pokemon_heights(pokedex))
 
     # Generates a dictionary of pokemon and their weights
     def get_pokemon_weights(self, pokedex):
@@ -64,7 +58,7 @@ class StatisticCalculator:
         return max_key
 
     # Extracted from get_avg_height / get_avg_weight
-    def calculate_avg(self, values):
-        num_of_values = len(values)
-        sum_of_values = sum(values)
+    def calculate_avg(self, items):
+        num_of_values = len(items)
+        sum_of_values = sum(items.values())
         return sum_of_values / num_of_values
