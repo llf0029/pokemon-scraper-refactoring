@@ -49,12 +49,12 @@ class StatisticCalculator:
     
     # Extracted from get_min_height / get_min_weight
     def calculate_min(self, items):
-        min_val = 1000000000
         min_key = ""
+        min_val = float('inf')
         for key, value in items.items():
             if value < min_val:
-                min_val = value
                 min_key = key
+                min_val = value
         return min_key
 
     # Extracted from get_avg_height / get_avg_weight
