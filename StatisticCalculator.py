@@ -23,17 +23,17 @@ class StatisticCalculator:
             values.append(pokedex[key].get_weight())
         return self.calculate_avg(values)
 
-    def get_min_height(self, pokedex):
+    def get_pokemon_heights(self, pokedex):
         items = {}
         for key in pokedex:
             items[key] = pokedex[key].get_height()
-        return self.calculate_min(items)
+        return items
+
+    def get_min_height(self, pokedex):
+        return self.calculate_min(self.get_pokemon_heights(pokedex))
 
     def get_max_height(self, pokedex):
-        items = {}
-        for key in pokedex:
-            items[key] = pokedex[key].get_height()
-        return self.calculate_max(items)
+        return self.calculate_max(self.get_pokemon_heights(pokedex))
         
     def get_avg_height(self, pokedex):
         values = []
