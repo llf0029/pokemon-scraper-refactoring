@@ -4,18 +4,18 @@
 
 
 class StatisticCalculator:
+    
+    def get_pokemon_weights(self, pokedex):
+        items = {}
+        for key in pokedex:
+            items[key] = pokedex[key].get_weight()
+        return items
 
     def get_min_weight(self, pokedex):
-        items = {}
-        for key in pokedex:
-            items[key] = pokedex[key].get_weight()
-        return self.calculate_min(items)
+        return self.calculate_min(self.get_pokemon_weights(pokedex))
 
     def get_max_weight(self, pokedex):
-        items = {}
-        for key in pokedex:
-            items[key] = pokedex[key].get_weight()
-        return self.calculate_max(items)
+        return self.calculate_max(self.get_pokemon_weights(pokedex))
 
     def get_avg_weight(self, pokedex):
         values = []
