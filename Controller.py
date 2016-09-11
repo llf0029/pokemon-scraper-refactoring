@@ -48,11 +48,7 @@ Type help or '?' to see a list of commands""", self)
             print(species.name + " added")
 
     def create_pokemon(self, name, pokemon):
-        self.pokedex[name] = Pokemon.Pokemon(
-            pokemon["number"], pokemon["image"], name,
-            pokemon["type"], pokemon["desc"], pokemon["height"],
-            pokemon["weight"], datetime.now().ctime()
-        )
+        self.pokedex[name] = Pokemon.Pokemon(pokemon, datetime.now().ctime())
         print(name + " added")
 
     def get_stats(self, name):

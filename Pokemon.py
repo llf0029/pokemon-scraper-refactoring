@@ -8,22 +8,14 @@ class Pokemon:
         This class is holding the information about each species
     """
 
-    def __init__(self,
-                 index,
-                 image,
-                 name,
-                 p_type,
-                 desc,
-                 height,
-                 weight,
-                 date_added):
-        self._index = index
-        self._image = image
-        self.name = name
-        self._type = p_type
-        self._desc = desc
-        self._height = height
-        self._weight = weight
+    def __init__(self, pokemon_information, date_added):
+        self.name = pokemon_information['name']
+        self._index = pokemon_information['number']
+        self._image = pokemon_information['image']
+        self._type = pokemon_information['type']
+        self._desc = pokemon_information['desc']
+        self._height = pokemon_information['height']
+        self._weight = pokemon_information['weight']
         self._date_added = date_added
 
     def get_index(self):
