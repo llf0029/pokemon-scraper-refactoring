@@ -11,10 +11,16 @@ class CmdView(View.View):
         pass
 
     def display_added_pokemon(self, pokemon):
-        print(species.name + " added")
+        print(pokemon.name + " added")
 
     def display_pokemon_stats(self, pokemon):
-        pass
+        print(str(pokemon.name))
+        print("Nation Number: " + str(pokemon.get_index()))
+        print("Image Link: " + pokemon.get_image())
+        print("Type: " + pokemon.get_type())
+        print("Pokedex Entry: " + pokemon.get_desc())
+        print("Height: " + str(pokemon.get_height()) + "m")
+        print("Weight: " + str(pokemon.get_weight()) + "kg")
 
     def display_weight_min(self, pokemon_name, pokemon_weight):
         pass

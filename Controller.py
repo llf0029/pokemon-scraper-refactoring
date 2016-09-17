@@ -53,13 +53,7 @@ Type help or '?' to see a list of commands""", self)
         self.view.display_added_pokemon(pokemon)
 
     def get_stats(self, name):
-        print(str(self.pokedex[name].name))
-        print("Nation Number: " + str(self.pokedex[name].get_index()))
-        print("Image Link: " + self.pokedex[name].get_image())
-        print("Type: " + self.pokedex[name].get_type())
-        print("Pokedex Entry: " + self.pokedex[name].get_desc())
-        print("Height: " + str(self.pokedex[name].get_height()) + "m")
-        print("Weight: " + str(self.pokedex[name].get_weight()) + "kg")
+        self.view.display_pokemon_stats(self.pokedex[name])
 
     def get_min_weight(self):
         lightest = self.my_Calc.get_min_weight(self.pokedex)
