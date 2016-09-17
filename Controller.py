@@ -38,8 +38,6 @@ Type help or '?' to see a list of commands""", self)
             print("pokemon instance saved")
         except KeyError:
             print("pokemon " + name + " was not found in the current data")
-        except SystemError:
-            print("pokemon instance could not be saved")
 
     def get_from_save(self):
         p_list = self.my_file_handler.load_database()
