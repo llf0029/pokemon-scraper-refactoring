@@ -22,20 +22,20 @@ class CmdView(View.View):
         print("Height: " + str(pokemon.get_height()) + "m")
         print("Weight: " + str(pokemon.get_weight()) + "kg")
 
-    def display_weight_min(self, pokemon_name, pokemon_weight):
+    def display_weight_min(self, pokemon):
         pass
 
-    def display_weight_max(self, pokemon_name, pokemon_weight):
+    def display_weight_max(self, pokemon):
         pass
 
-    def display_weight_avg(self, pokemon_name, pokemon_weight):
+    def display_weight_avg(self, pokemon):
         pass
 
-    def display_height_min(self, pokemon_name, pokemon_height):
+    def display_height_min(self, pokemon):
         pass
 
-    def display_height_max(self, pokemon_name, pokemon_height):
+    def display_height_max(self, pokemon):
         pass
 
-    def display_height_avg(self, pokemon_name, pokemon_height):
+    def display_height_avg(self, pokemon):
         pass
