@@ -19,7 +19,7 @@ class StatisticCalculator:
 
     def get_max_height(self, pokedex):
         return self.calculate_max(self.get_pokemon_heights(pokedex))
-        
+
     def get_avg_height(self, pokedex):
         return self.calculate_avg(self.get_pokemon_heights(pokedex))
 
