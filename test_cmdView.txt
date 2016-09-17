@@ -1,0 +1,63 @@
+>>> import Controller
+
+>>> Controller.Controller().pokedex.clear()
+>>> Controller.Controller().create_pokemon(
+...    "Pikachu", 
+...    {
+...        "name": "Pikachu", 
+...        "image": "https://img.pokemondb.net/artwork/pikachu.jpg",
+...        "number": 25, 
+...        "type": "Electric", 
+...        "desc": "Pikachu is an Electric type Pokémon introduced in Generation 1 It is known as the Mouse Pokémon", 
+...        "height": 0.41, 
+...        "weight": 6.0
+...    })
+Pikachu added
+
+>>> Controller.Controller().get_stats("Pikachu")
+Pikachu
+Nation Number: 25
+Image Link: https://img.pokemondb.net/artwork/pikachu.jpg
+Type: Electric
+Pokedex Entry: Pikachu is an Electric type Pokémon introduced in Generation 1 It is known as the Mouse Pokémon
+Height: 0.41m
+Weight: 6.0kg
+
+>>> Controller.Controller().pokedex.clear()
+>>> Controller.Controller().get_from_web("http://pokemondb.net/pokedex/", 1, "Fire")
+Charmander added
+Charmeleon added
+Charizard added
+Vulpix added
+Ninetales added
+Growlithe added
+Arcanine added
+Ponyta added
+Rapidash added
+Magmar added
+Flareon added
+Moltres added
+
+>>> Controller.Controller().get_min_weight()
+the lightest pokemon you have got data on is Charmander at only 8.5kg
+
+>>> Controller.Controller().get_max_weight()
+the heaviest pokemon you have got data on is Arcanine at a whooping 155.0kg
+
+>>> Controller.Controller().get_avg_weight() #doctest:+ELLIPSIS
+the average weight of pokemon you have got data on is 48.02...kg
+
+>>> Controller.Controller().get_min_height() #doctest:+ELLIPSIS
+the shortest pokemon you have got data on is ... at only 0.61m
+
+>>> Controller.Controller().get_max_height()
+the tallest pokemon you have got data on is Moltres at a whooping 2.01m
+
+>>> Controller.Controller().get_avg_height() #doctest:+ELLIPSIS
+the average height of pokemon you have got data on is 1.217...m
+
+>>> Controller.Controller().save_data("Pikachu")
+pokemon Pikachu was not found in the current data
+
+>>> Controller.Controller().save_data("Moltres")
+pokemon instance saved
