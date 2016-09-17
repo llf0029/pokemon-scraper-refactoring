@@ -41,7 +41,10 @@ class CmdView(View.View):
         )
 
     def display_height_min(self, pokemon):
-        pass
+        print(
+            "the shortest pokemon you have got data on is {} at only {}m"
+            .format(pokemon.name, pokemon.get_height())
+        )
 
     def display_height_max(self, pokemon):
         pass

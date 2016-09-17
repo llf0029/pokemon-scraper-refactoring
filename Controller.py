@@ -69,9 +69,7 @@ Type help or '?' to see a list of commands""", self)
 
     def get_min_height(self):
         shortest = self.my_Calc.get_min_height(self.pokedex)
-        height = self.pokedex[shortest].get_height()
-        print("the shortest pokemon you have got data on is " + shortest +
-              " at only " + str(height) + "m")
+        self.view.display_height_min(self.pokedex[shortest])
 
     def get_max_height(self):
         tallest = self.my_Calc.get_max_height(self.pokedex)
