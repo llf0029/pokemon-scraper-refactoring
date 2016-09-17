@@ -40,7 +40,7 @@ class Console (Cmd):
             gen = args[1]
         if len(args) > 2 and args[2] is not "":
             p_type = args[2]
-        
+
         self.my_controller.get_from_web(url, gen, p_type)
 
     def do_save(self, name):
