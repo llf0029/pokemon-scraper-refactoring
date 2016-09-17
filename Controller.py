@@ -47,9 +47,10 @@ Type help or '?' to see a list of commands""", self)
             self.pokedex[species.name] = species
             self.view.display_added_pokemon(species)
 
-    def create_pokemon(self, name, pokemon):
-        self.pokedex[name] = Pokemon.Pokemon(pokemon, datetime.now().ctime())
-        print(name + " added")
+    def create_pokemon(self, name, pokemon_info):
+        pokemon = Pokemon.Pokemon(pokemon_info, datetime.now().ctime())
+        self.pokedex[name] = pokemon
+        self.view.display_added_pokemon(pokemon)
 
     def get_stats(self, name):
         print(str(self.pokedex[name].name))
