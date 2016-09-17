@@ -7,7 +7,7 @@ the worst "code smells".
 See the file, PokemonScraper-CodeSmells.txt, in the root directory for detailed 
 documentation of the refactoring process.
 This file includes an identification of the worst code smells, along with a
-step-by-step report of how they were managed, and finally an evaluation of the
+step-by-step report of how they were managed, and finally an evaluation of each
 refactoring iteration.
 
 Test coverage reports for each iteration of refactoring can be found within the
