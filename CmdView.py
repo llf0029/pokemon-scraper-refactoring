@@ -47,7 +47,10 @@ class CmdView(View.View):
         )
 
     def display_height_max(self, pokemon):
-        pass
+        print(
+            "the tallest pokemon you have got data on is {} at a whooping {}m"
+            .format(pokemon.name, pokemon.get_height())
+        )
 
     def display_height_avg(self, pokemon_height):
         pass

@@ -73,9 +73,7 @@ Type help or '?' to see a list of commands""", self)
 
     def get_max_height(self):
         tallest = self.my_Calc.get_max_height(self.pokedex)
-        height = self.pokedex[tallest].get_height()
-        print("the tallest pokemon you have got data on is " + tallest +
-              " at a whooping " + str(height) + "m")
+        self.view.display_height_max(self.pokedex[tallest])
 
     def get_avg_height(self):
         avg = self.my_Calc.get_avg_height(self.pokedex)
