@@ -5,13 +5,13 @@ import View
 class CmdView(View.View):
 
     def display_message(self, message):
-        pass
+        print (message.encode('ascii', 'replace').decode())
 
     def error_not_found(self, pokemon_name):
         pass
 
     def display_added_pokemon(self, pokemon):
-        pass
+        print(species.name + " added")
 
     def display_pokemon_stats(self, pokemon):
         pass

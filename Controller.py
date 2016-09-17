@@ -1,6 +1,7 @@
 """
 @author: Angus Whitehead
 """
+import CmdView
 import WebScraper
 import Pokemon
 import Console
@@ -20,6 +21,7 @@ class Controller:
 Type help or '?' to see a list of commands""", self)
         self.my_file_handler = FileHandler.FileHandler()
         self.my_Calc = StatisticCalculator.StatisticCalculator()
+        self.view = CmdView.CmdView()
 
     def go(self):
         self.my_console.cmdloop()
@@ -43,7 +45,7 @@ Type help or '?' to see a list of commands""", self)
         p_list = self.my_file_handler.load_database()
         for species in p_list:
             self.pokedex[species.name] = species
-            print(species.name + " added")
+            self.view.display_added_pokemon(species)
 
     def create_pokemon(self, name, pokemon):
         self.pokedex[name] = Pokemon.Pokemon(pokemon, datetime.now().ctime())
