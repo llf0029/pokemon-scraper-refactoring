@@ -1,0 +1,3 @@
+Each of the folders within contains the test coverage results for the
+refactoring iteration, as reported by the python package, "coverage", using
+the --branch flag.
