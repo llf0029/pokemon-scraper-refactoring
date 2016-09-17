@@ -23,7 +23,10 @@ class CmdView(View.View):
         print("Weight: " + str(pokemon.get_weight()) + "kg")
 
     def display_weight_min(self, pokemon):
-        pass
+        print(
+            "the lightest pokemon you have got data on is {} at only {}kg"
+            .format(pokemon.name, pokemon.get_weight())
+        )
 
     def display_weight_max(self, pokemon):
         pass

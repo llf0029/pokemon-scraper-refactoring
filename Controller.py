@@ -57,9 +57,7 @@ Type help or '?' to see a list of commands""", self)
 
     def get_min_weight(self):
         lightest = self.my_Calc.get_min_weight(self.pokedex)
-        weight = self.pokedex[lightest].get_weight()
-        print("the lightest pokemon you have got data on is " + lightest +
-              " at only " + str(weight) + "kg")
+        self.view.display_weight_min(self.pokedex[lightest])
 
     def get_max_weight(self):
         heaviest = self.my_Calc.get_max_weight(self.pokedex)
