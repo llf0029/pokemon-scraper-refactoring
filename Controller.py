@@ -61,9 +61,7 @@ Type help or '?' to see a list of commands""", self)
 
     def get_max_weight(self):
         heaviest = self.my_Calc.get_max_weight(self.pokedex)
-        weight = self.pokedex[heaviest].get_weight()
-        print("the heaviest pokemon you have got data on is " + heaviest +
-              " at a whooping " + str(weight) + "kg")
+        self.view.display_weight_max(self.pokedex[heaviest])
 
     def get_avg_weight(self):
         avg = self.my_Calc.get_avg_weight(self.pokedex)

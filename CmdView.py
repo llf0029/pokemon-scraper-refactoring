@@ -29,7 +29,10 @@ class CmdView(View.View):
         )
 
     def display_weight_max(self, pokemon):
-        pass
+        print(
+            "the heaviest pokemon you have got data on is {} at a whooping {}kg"
+            .format(pokemon.name, pokemon.get_weight())
+        )
 
     def display_weight_avg(self, pokemon):
         pass
