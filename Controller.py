@@ -65,8 +65,7 @@ Type help or '?' to see a list of commands""", self)
 
     def get_avg_weight(self):
         avg = self.my_Calc.get_avg_weight(self.pokedex)
-        print("the average weight of pokemon you have got data on is " +
-              str(avg) + "kg")
+        self.view.display_weight_avg(avg)
 
     def get_min_height(self):
         shortest = self.my_Calc.get_min_height(self.pokedex)

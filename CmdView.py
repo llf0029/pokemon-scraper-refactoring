@@ -34,8 +34,11 @@ class CmdView(View.View):
             .format(pokemon.name, pokemon.get_weight())
         )
 
-    def display_weight_avg(self, pokemon):
-        pass
+    def display_weight_avg(self, pokemon_weight):
+        print(
+            "the average weight of pokemon you have got data on is {}kg"
+            .format(pokemon_weight)
+        )
 
     def display_height_min(self, pokemon):
         pass
@@ -43,5 +46,5 @@ class CmdView(View.View):
     def display_height_max(self, pokemon):
         pass
 
-    def display_height_avg(self, pokemon):
+    def display_height_avg(self, pokemon_height):
         pass
