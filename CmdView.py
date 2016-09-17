@@ -8,7 +8,7 @@ class CmdView(View.View):
         print (message.encode('ascii', 'replace').decode())
 
     def error_not_found(self, pokemon_name):
-        pass
+        print("pokemon " + pokemon_name + " was not found in the current data")
 
     def display_added_pokemon(self, pokemon):
         print(pokemon.name + " added")

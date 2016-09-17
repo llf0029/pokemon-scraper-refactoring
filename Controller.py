@@ -37,9 +37,9 @@ Type help or '?' to see a list of commands""", self)
         try:
             pokemon = self.pokedex[name]
             self.my_file_handler.save(pokemon)
-            print("pokemon instance saved")
+            self.view.display_message("pokemon instance saved")
         except KeyError:
-            print("pokemon " + name + " was not found in the current data")
+            self.view.error_not_found(name)
 
     def get_from_save(self):
         p_list = self.my_file_handler.load_database()
