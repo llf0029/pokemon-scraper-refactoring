@@ -1,5 +1,7 @@
 >>> import Controller
 
+>>> Controller.Controller().pokedex.clear()
+
 >>> Controller.Controller().get_from_web("http://pokemondb.net/pokedex/", 1, "Fire")
 Charmander added
 Charmeleon added

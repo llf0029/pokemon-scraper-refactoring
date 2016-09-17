@@ -1,5 +1,7 @@
 >>> import Controller
 
+>>> Controller.Controller().pokedex.clear()
+
 >>> Controller.Controller().create_pokemon(
 ...    "Pikachu", 
 ...    {
