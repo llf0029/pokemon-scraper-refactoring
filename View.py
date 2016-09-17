@@ -29,7 +29,7 @@ class View(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def display_weight_avg(self, pokemon):
+    def display_weight_avg(self, pokemon_weight):
         pass
 
     @abstractmethod
@@ -41,5 +41,5 @@ class View(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def display_height_avg(self, pokemon):
+    def display_height_avg(self, pokemon_height):
         pass
