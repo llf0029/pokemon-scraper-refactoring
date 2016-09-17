@@ -77,5 +77,4 @@ Type help or '?' to see a list of commands""", self)
 
     def get_avg_height(self):
         avg = self.my_Calc.get_avg_height(self.pokedex)
-        print("the average height of pokemon you have got data on is " +
-              str(avg) + "m")
+        self.view.display_height_avg(avg)

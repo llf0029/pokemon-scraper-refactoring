@@ -53,4 +53,7 @@ class CmdView(View.View):
         )
 
     def display_height_avg(self, pokemon_height):
-        pass
+        print(
+            "the average height of pokemon you have got data on is {}m"
+            .format(pokemon_height)
+        )
