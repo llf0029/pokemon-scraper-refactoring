@@ -1,0 +1,179 @@
+#--------------------------------------------#
+#   Pokemon Scraper - Refactoring Analysis   #
+#--------------------------------------------#
+Application:        Pokemon Scraper
+Original Author:    whiteha91 - http://github.com/whiteha91
+Refactorer:         llf0029   - http://github.com/llf0029
+
+---------------- Introduction ----------------
+This document provides an anlysis of each "code smell" identified, along with 
+a step-by-step breakdown of how each was managed, and an evaluation of the 
+refactoring performed.
+
+---------------- Code Smell 1 ----------------
+Name:       Long Parameter List
+Location:   pokemon-scraper-refactoring/Pokemon.py
+            Lines 11-19
+Reasons:    1.  The Pokemon class could easily be considered as a Data Class or
+                Lazy Class. Giving it more to do would improve its usefulness.
+            2.  The data passed to the parameters of this method is already
+                stored in a Dictionary collection, allowing for easy transfer
+                of data.
+            3.  Reducing the parameter list size will improve readability.
+Strategy:   Preserve Whole Object
+                The whole dictionary object will be passed through instead of
+                individual values from it.
+
+Step-by-step approach:
+    1.  test_createPokemon.txt
+        Wrote doctests which covered the functionality to be refactored. Ran
+        the tests to ensure that they worked as expected.
+    2.  Committed tests to version control.
+    3.  Pokemon.py
+        The Pokemon.__init__() parameter list was changed to just accept a 
+        pokemon_information dictionary along with the existing date_added
+        field.
+    4.  Pokemon.py
+        The variable assignment statements within Pokemon.__init__() were
+        changed to get their values from the pokemon_information dictionary.
+    5.  Controller.py
+        Modified the code within create_pokemon() to pass in the pokemon dict
+        instead of individually passing in each of the values inside it.
+    6.  Ran the tests before to ensure that they still passed.
+    7.  Committed to version control.
+
+Evaluation:
+The code smell was effectively removed, ensuring that the parameter list within
+the Controller.create_pokemon() function was not overly long, and giving the
+Pokemon class more things to do, so it wasn't so much like a Data Class or Lazy
+Class.
+
+---------------- Code Smell 2 ----------------
+Name:       Code Duplication
+Location:   pokemon-scraper-refactoring/StatisticsCalculator.py
+            Lines 8-15 and 34-41
+            Lines 17-24 and 43-50
+            Lines 26-32 and 52-58
+Reasons:    1.  There are only really three functionalities (calculate maximum,
+                calculate minimum, and calculate average), but six methods 
+                implementing them (max/min/avg for weight, and for height).
+Strategy:   Extract Method
+                Each functionality will be extracted into a reusable method.
+
+Step-by-step approach:
+    1.  test_statisticsCalculator.txt
+        Wrote doctests which covered the functionality to be refactored. Ran 
+        the tests to ensure that they worked as expected.
+    2.  Committed tests to version control.
+    3.  StatisticCalculator.py
+        Extracted the duplicated code from the get_avg_height() and 
+        get_avg_weight() methods into a common calculate_avg() method.
+    4.  Tested and committed to version control.
+    5.  StatisticCalculator.py
+        Rewrote the calculate_avg() method to improve readability.
+    6.  Tested and committed to version control.
+    7.  StatisticCalculator.py
+        Extracted the duplicated code from the get_min_height() and 
+        get_min_weight() methods into a common calculate_min() method.
+    8.  Tested and committed to version control.
+    9.  StatisticCalculator.py
+        Rewrote the calculate_min() method to improve readability.
+    10. Tested and committed to version control.
+    11. StatisticCalculator.py
+        Copied the calculate_min() method and modified it to form a new 
+        calculate_max() method.
+    12. Tested and committed to version control.
+    13. StatisticCalculator.py
+        Extracted more duplicated code from the get_xxx_weight() methods into a
+        common get_pokemon_weights() method.
+    14. Tested and committed to version control.
+    15. StatisticCalculator.py
+        Extracted more duplicated code from the get_xxx_height() methods into a
+        common get_pokemon_heights() method.
+    16. Tested and committed to version control.
+    17. StatisticCalculator.py
+        Further refactored the calculate_avg() method so it used the same dict
+        as the calculate_min() and calculate_max() methods.
+    18. StatisticCalculator.py
+        Updated the get_avg_height() and get_avg_weight() methods to use the
+        same dict as the other get_xxx_height() and get_xxx_weight() methods.
+    19. Tested and committed to version control.
+
+Evaluation:
+I was able to refactor the code further than I had initially planned, resulting
+in even less duplication of code. I think the quality of this module has been 
+improved significantly as a result of this refactoring, as it is now more
+readable and the increased granularity would make it easier to make changes in
+the future if necessary.
+
+---------------- Code Smell 3 ----------------
+Name:       Shotgun Surgery and Duplicated Code
+Location:   pokemon-scraper-refactoring/Controller
+            Lines 38, 40, 42, 48, 52, 55-61, 66, 72, 77, 83, 89, 94
+Reasons:    1.  Any change to the overall view (such as displaying in a 
+                graphical way) would require changes to code throughout the
+                Controller and Console classes.
+            2.  Any specific changes to an individual output display (such as
+                rewording a get_avg_weight() or get_avg_height() method) would
+                require trawling through the entire codebase.
+            3.  Any changes to a repeated output display (such as an error
+                message) would require trawling through the entire codebase and
+                making the same change in multiple places.
+Strategy:   Extract Method / Extract Class
+                Each piece of view code will be extracted into a separate View
+                class, either as a generic display() method, or as a specific
+                method such as display_pokemon_stats().
+
+Step-by-step approach:
+    1.  test_cmdView.txt
+        Wrote doctests which covered the functionality to be refactored. Ran 
+        the tests to ensure that they worked as expected.
+    2.  Committed tests to version control.
+    3.  View.py
+        Created a new abstract base class, View, with a number of abstract
+        method signatures.
+    4.  Committed to version control.
+    5.  CmdView.py
+        Created a new class, CmdView, implementing the View abstract base
+        class.
+    6.  Committed to version control.
+    7.  Controller.py
+        Added import and instantiation of a CmdView to Controller objects.
+    8.  Tested and committed to version control.
+    9.  CmdView.py
+        Created display_message method in CmdView and extracted a new
+        display_added_pokemon from code in the Controller class.
+    10. Tested and committed to version control.
+    11. Controller.py
+        Refactored create_pokemon to also use the display_added_pokemon method.
+    12. Tested and committed to version control.
+    13. CmdView.py
+        Extracted a new display_pokemon_stats method from code in the
+        Controller class.
+    14. CmdView.py
+        Extracted a new display_weight_min method from code in Controller.
+    15. Tested and committed to version control.
+    16. CmdView.py
+        Extracted a new display_weight_max method from code in Controller.
+    17. Tested and committed to version control.
+    18. CmdView.py
+        Extracted a new display_weight_avg method from code in Controller.
+    19. Tested and committed to version control.
+    20. CmdView.py
+        Extracted a new display_height_min method from code in Controller.
+    21. Tested and committed to version control.
+    22. CmdView.py
+        Extracted a new display_height_max method from code in Controller.
+    23. Tested and committed to version control.
+    24. CmdView.py
+        Extracted a new display_height_avg method from code in Controller.
+    25. Tested and committed to version control.
+    26. CmdView.py
+        Extracted a new error_not_found method from code in Controller.
+    27. Tested and committed to version control.
+
+Evaluation:
+Having extracted the methods into a new CmdView class, all the print statements
+are within one area and abstracted from the Controller, improving readability.
+This new setup would also allow future View implementations that use another
+method to display information, as it's using an abstract base class, View.
